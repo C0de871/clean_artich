@@ -27,7 +27,7 @@ class AddressModel extends AddressEntity {
       ApiKey.suite: suite,
       ApiKey.city: city,
       ApiKey.zipcode: zipcode,
-      ApiKey.geo: geo,
+      ApiKey.geo: (geo as GeoModel).toJson(),
     };
   }
 }

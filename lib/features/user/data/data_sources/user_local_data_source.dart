@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:clean_artich/core/databases/api/end_points.dart';
 import 'package:clean_artich/core/databases/cache/cache_helper.dart';
 import 'package:clean_artich/core/databases/cache/cache_keys.dart';
 import 'package:clean_artich/core/errors/expentions.dart';
@@ -12,6 +13,7 @@ class UserLocalDataSource {
 
   cacheUser(UserModel? userToCache) {
     if (userToCache != null) {
+
       cache.saveData(
         key: CacheKeys.userKey,
         value: json.encode(
@@ -25,10 +27,10 @@ class UserLocalDataSource {
 
   Future<UserModel> getLastUser() {
     final jsonString = cache.getDataString(key: CacheKeys.userKey);
-
+    
     if (jsonString != null) {
       return Future.value(UserModel.fromJson(json.decode(jsonString)));
-    }else{
+    } else {
       throw CacheExeption(errorMessage: "No Internet Connection");
     }
   }

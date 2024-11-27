@@ -28,6 +28,7 @@ class UserRepositoryImpl extends UserRepository {
     } else {
       try {
         final localUser = await localDataSource.getLastUser();
+        print("---------------$localUser");
         return Right(localUser);
       } on CacheExeption catch (e) {
         return Left(Failure(errMessage: e.errorMessage));
